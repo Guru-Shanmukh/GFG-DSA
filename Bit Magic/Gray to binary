@@ -1,0 +1,16 @@
+class Solution{
+    
+    // function to convert a given Gray equivalent n to Binary equivalent.
+    public static int grayToBinary(int n) {
+        int result = n;
+        
+        // Iterate through the bits of n
+        while (n > 0) {
+            n >>= 1;           // Right shift n by 1
+            result ^= n;       // XOR the result with the shifted n
+        }
+        
+        return result;
+    }
+       
+}
