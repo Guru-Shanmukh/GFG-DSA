@@ -1,0 +1,9 @@
+class Solution{
+    
+    //  Function to find the gray code of given number n
+    public static int greyConverter(int n) {
+  // Gray code is n XOR n right shifted by 1
+  return n ^ (n >> 1);
+}
+    
+}
