@@ -1,0 +1,13 @@
+class Solution
+{
+    //Function to swap odd and even bits.
+    public static int swapBits(int n) {
+  // Use a mask to isolate even and odd bits
+  int evenBits = n & 0xaaaaaaaa;  // 10101010... (even positions set to 1)
+  int oddBits = n & 0x55555555;  // 01010101... (odd positions set to 1)
+
+  // Shift even bits right by 1 position and odd bits left by 1 position
+  return (evenBits >> 1) | (oddBits << 1);
+}
+    
+}
