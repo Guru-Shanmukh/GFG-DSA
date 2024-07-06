@@ -1,0 +1,25 @@
+class Solution{
+    
+    /*  Function to calculate the longest consecutive ones
+    *   N: given input to calculate the longest consecutive ones
+    */
+    public static int maxConsecutiveOnes(int N) {
+  int count = 0;
+  int max = 0;
+  while (N != 0) {
+    // Check if the last bit is 1
+    if ((N & 1) == 1) {
+      count++;
+    } else {
+      // Update max if needed and reset count
+      max = Math.max(max, count);
+      count = 0;
+    }
+    // Right shift N by 1 to process next bit
+    N >>>= 1;
+  }
+  // Update max for the last sequence of 1s (if any)
+  max = Math.max(max, count);
+  return max;
+}
+}
