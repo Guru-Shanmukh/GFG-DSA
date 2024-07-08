@@ -1,0 +1,30 @@
+class Solution
+{
+    private static final String[] KEYPAD_MAPPING = {
+        "",    "",    "abc",  "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
+    };
+    //Function to find list of all words possible by pressing given numbers.
+    static ArrayList <String> possibleWords(int a[], int N)
+    {
+        // your code here  
+        ArrayList<String> result = new ArrayList<>();
+        if (N == 0) {
+            return result;
+        }
+        backtrack(a, N, 0, new StringBuilder(), result);
+        return result;
+    }
+    private static void backtrack(int[] a, int N, int index, StringBuilder current, ArrayList<String> result) {
+        if (index == N) {
+            result.add(current.toString());
+            return;
+        }
+
+        String letters = KEYPAD_MAPPING[a[index]];
+        for (char letter : letters.toCharArray()) {
+            current.append(letter);
+            backtrack(a, N, index + 1, current, result);
+            current.deleteCharAt(current.length() - 1); // backtrack
+        }
+    }
+}
