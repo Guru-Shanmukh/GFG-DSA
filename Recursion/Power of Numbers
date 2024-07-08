@@ -1,0 +1,29 @@
+class Solution
+{
+    static final int mod = 1000000007;
+    public static int reverseNumber(int n) {
+        int rev = 0;
+        while (n > 0) {
+            rev = rev * 10 + n % 10;
+            n /= 10;
+        }
+        return rev;
+    }
+    
+    long power(int N,int R)
+    {
+        //Your code here
+        R = reverseNumber(N);
+        long result = 1;
+        long baseMod = N % mod;
+        while (R > 0) {
+            if ((R % 2) == 1) { // If exp is odd, multiply baseMod with result
+                result = (result * baseMod) % mod;
+            }
+            R = R / 2; // Divide the exponent by 2
+            baseMod = (baseMod * baseMod) % mod; // Square the base
+        }
+        return result;
+    }
+
+}
