@@ -1,0 +1,18 @@
+class LexSort
+{
+    //Function to return the lexicographically sorted power-set of the string.
+    public static ArrayList<String> powerSet(String s) {
+        ArrayList<String> result = new ArrayList<>();
+        generatePowerSet(s, 0, "", result);
+        return result;
+    }
+    private static void generatePowerSet(String s, int index, String current, List<String> result) {
+        if (index == s.length()) {
+            result.add(current);
+            return;
+        }
+        generatePowerSet(s, index + 1, current, result);
+        generatePowerSet(s, index + 1, current + s.charAt(index), result);
+    }
+
+}
