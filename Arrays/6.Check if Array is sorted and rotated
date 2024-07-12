@@ -1,0 +1,38 @@
+class Solution{    
+    
+
+    public static boolean checkRotatedAndSorted(int arr[], int num) {
+        if (num < 2) {
+            return false;
+        }
+
+        // Check for increasing then rotated
+        int increasingBreak = 0;
+        for (int i = 1; i < num; i++) {
+            if (arr[i - 1] > arr[i]) {
+                increasingBreak++;
+            }
+        }
+        // Include the break between the last and the first element
+        if (arr[num - 1] > arr[0]) {
+            increasingBreak++;
+        }
+
+        // Check for decreasing then rotated
+        int decreasingBreak = 0;
+        for (int i = 1; i < num; i++) {
+            if (arr[i - 1] < arr[i]) {
+                decreasingBreak++;
+            }
+        }
+        // Include the break between the last and the first element
+        if (arr[num - 1] < arr[0]) {
+            decreasingBreak++;
+        }
+
+        // To be sorted and rotated, there should be exactly one break
+        // The array should not be sorted without any rotations
+        return (increasingBreak == 1 || decreasingBreak == 1);
+    }
+    
+}
