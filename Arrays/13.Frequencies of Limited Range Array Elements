@@ -1,0 +1,21 @@
+class Solution{
+    //Function to count the frequency of all elements from 1 to N in the array.
+    public void frequencyCount(int arr[], int n, int p) {
+        // Create an array to store frequencies from 1 to n
+        int[] count = new int[n];
+        
+        // Traverse the input array and count frequencies
+        for (int i = 0; i < n; i++) {
+            int val = arr[i];
+            // Increment the count only if the value is within the range [1, n]
+            if (val >= 1 && val <= n) {
+                count[val - 1]++;
+            }
+        }
+        
+        // Copy frequencies back to the original array arr
+        for (int i = 0; i < n; i++) {
+            arr[i] = count[i];
+        }
+    }
+}
