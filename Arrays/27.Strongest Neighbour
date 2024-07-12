@@ -1,0 +1,9 @@
+class StrongestNeighbour{
+    
+    // Function to find maximum for every adjacent pairs in the array.
+    static void maximumAdjacent(int sizeOfArray, int arr[]) {
+        for(int i=0;i<arr.length-1;i++){
+            System.out.print(Math.max(arr[i],arr[i+1])+" ");
+        }
+    }
+}
