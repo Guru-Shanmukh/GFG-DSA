@@ -1,0 +1,27 @@
+class Solution
+{
+    //Function to find the smallest positive number missing from the array.
+   public int missingNumber(int[] arr, int n) {
+        // Step 1: Marking indices that are within the range [1, N]
+        for (int i = 0; i < n; i++) {
+            // Ignore non-positive numbers and numbers greater than n
+            while (arr[i] > 0 && arr[i] <= n && arr[arr[i] - 1] != arr[i]) {
+                // Swap arr[i] and arr[arr[i] - 1]
+                int temp = arr[arr[i] - 1];
+                arr[arr[i] - 1] = arr[i];
+                arr[i] = temp;
+            }
+        }
+        
+        // Step 2: Finding the smallest missing positive number
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != i + 1) {
+                return i + 1;
+            }
+        }
+        
+        // Step 3: If all numbers from 1 to N are present, return N + 1
+        return n + 1;
+    }
+
+}
