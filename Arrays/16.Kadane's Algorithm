@@ -1,0 +1,18 @@
+class Solution {
+
+    // arr: input array
+    // Function to find the sum of contiguous subarray with maximum sum.
+    long maxSubarraySum(int[] arr) {
+    long maxSumSoFar = arr[0];
+    long currentSum = arr[0];
+
+    for (int i = 1; i < arr.length; i++) {
+      // Check if starting a new subarray with the current element gives a better sum
+      currentSum = Math.max(arr[i], currentSum + arr[i]);
+      // Update maxSumSoFar if the current sum is greater
+      maxSumSoFar = Math.max(maxSumSoFar, currentSum);
+    }
+
+    return maxSumSoFar;
+  }
+}
