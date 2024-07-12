@@ -1,0 +1,35 @@
+class Solution
+{
+    public int[] LargestFraction(int n, int d)
+    {
+        // Initialize variables to store the best numerator and denominator found
+        int bestP = 0, bestQ = 1;
+
+        // Iterate over possible denominators from 1 to a large number to ensure thorough search
+        for (int q = 1; q <= 10000; q++) {
+            // Calculate the corresponding numerator that is just less than (n/d)
+            int p = (n * q - 1) / d;
+
+            // Ensure p is non-negative and the fraction is irreducible
+            if (p > 0 && gcd(p, q) == 1) {
+                // Update if we find a better fraction (note: larger denominators will naturally handle this)
+                if ((long) p * bestQ > (long) bestP * q) {
+                    bestP = p;
+                    bestQ = q;
+                }
+            }
+        }
+
+        return new int[] { bestP, bestQ };
+    }
+
+    // Helper function to calculate gcd using Euclidean algorithm
+    private int gcd(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+}
