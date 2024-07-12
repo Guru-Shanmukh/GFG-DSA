@@ -1,0 +1,27 @@
+class Solution {
+    // Function to find element with more appearances between two elements in an
+    // array.
+    public int majorityWins(int arr[], int n, int x, int y) {
+    int countX = 0;
+    int countY = 0;
+
+    // Count occurrences of x and y simultaneously
+    for (int i = 0; i < n; i++) {
+      if (arr[i] == x) {
+        countX++;
+      } else if (arr[i] == y) {
+        countY++;
+      }
+    }
+
+    // Compare counts and return the element with the higher count
+    if (countX > countY) {
+      return x;
+    } else if (countY > countX) {
+      return y;
+    } else {
+      // In case of a tie, return the smaller element
+      return Math.min(x, y);
+    }
+  }
+}
