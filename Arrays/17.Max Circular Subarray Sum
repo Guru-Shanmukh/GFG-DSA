@@ -1,0 +1,52 @@
+class Solution{
+
+    // a: input array
+    // n: size of array
+    //Function to find maximum circular subarray sum.
+    static int circularSubarraySum(int a[], int n) {
+        
+        // Your code here
+        
+        // Function to find maximum sum of non-circular subarray using Kadane's Algorithm
+        int max_kadane = kadane(a, n);
+        
+        // Function to find the total sum of the array
+        int max_wrap = 0;
+        for (int i = 0; i < n; i++) {
+            max_wrap += a[i];
+            // Inverting the array elements
+            a[i] = -a[i];
+        }
+        
+        // Find the maximum sum of the inverted array using Kadane's algorithm
+        int inverted_max_kadane = kadane(a, n);
+        
+        // max_wrap now contains the maximum sum of the circular subarray
+        max_wrap = max_wrap + inverted_max_kadane; // Maximum sum with corner elements
+        
+        // The maximum circular subarray sum will be maximum of:
+        // 1) Maximum sum of non-circular subarray (max_kadane)
+        // 2) Maximum sum of circular subarray (max_wrap)
+        if (max_wrap == 0) {
+            return max_kadane;
+        }
+        
+        return Math.max(max_wrap, max_kadane);
+    }
+    
+    // Helper function to implement Kadane's Algorithm
+    static int kadane(int a[], int n) {
+        int max_so_far = Integer.MIN_VALUE, max_ending_here = 0;
+        for (int i = 0; i < n; i++) {
+            max_ending_here = max_ending_here + a[i];
+            if (max_so_far < max_ending_here) {
+                max_so_far = max_ending_here;
+            }
+            if (max_ending_here < 0) {
+                max_ending_here = 0;
+            }
+        }
+        return max_so_far;
+    }
+    
+}
