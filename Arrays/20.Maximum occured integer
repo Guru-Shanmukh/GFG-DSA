@@ -1,0 +1,31 @@
+class Solution {
+    // Function to find the maximum occurred integer in all ranges.
+    public static int maxOccured(int n, int l[], int r[], int maxx) {
+    int freq[] = new int[maxx + 1]; // Initialize frequency array to store counts
+
+    // Mark the frequencies of elements in the ranges
+    for (int i = 0; i < n; i++) {
+      freq[l[i]]++; // Increment frequency for starting index of each range
+      if (r[i] < maxx) { // Decrement frequency for (r[i] + 1) to avoid double counting
+        freq[r[i] + 1]--;
+      }
+    }
+
+    // Prefix sum the frequency array to get cumulative counts
+    for (int i = 1; i <= maxx; i++) {
+      freq[i] += freq[i - 1];
+    }
+
+    // Find the element with the maximum frequency
+    int maxFreq = freq[0];
+    int maxOccuring = 0;
+    for (int i = 1; i <= maxx; i++) {
+      if (freq[i] > maxFreq) {
+        maxFreq = freq[i];
+        maxOccuring = i;
+      }
+    }
+
+    return maxOccuring;
+  }
+}
